@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homein</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+</head>
+<body>
+<h2><b><font color="blue">Welcome User!!!</font> </b></h2>
+
+<hr>
+
+<div class="container">
+  {%load static%}
+<div class="row row-cols-1 row-cols-md-2 g-4">
+
+  <div class="col">
+    <div class="card">
+
+      <img src="{%static 'images/trans.png'%}" class="card-img-top" alt="...">
+        <h5 class="card-title"><a href="{%url 'transfer'%}">>Transfer Amount</a></h5>
+
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card">
+      <img src="{%static 'images/deposit.jpg'%}" class="card-img-top" alt="...">
+        <h5 class="card-title"><a href="{%url 'deposit'%}">>Deposit Amount</a></h5>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card">
+              <img src="{%static 'images/withdraw.jpg'%}" class="card-img-top" alt="...">
+
+        <h5 class="card-title"><a href="{%url 'withdraw'%}">>Withdraw Amount</a></h5>
+
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+          <img src="{%static 'images/bal.jpg'%}" class="card-img-top" alt="...">
+
+          <h5 class="card-title"><a href="{%url 'balance'%}">>Balance Enquiry</a></h5>
+
+    </div>
+  </div>
+
+
+    <div class="card" style="width: 18rem;">
+  <img src="{%static 'images/stat.jpg'%}" class="card-img-top" alt="...">
+  <div class="card-body">
+      <h5 class="card-title"><a href="{%url 'history'%}">Account Activity</a></h5>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+
+
+<!--<a href="{%url 'transfer'%}">Transfer amount</a>-->
+<!--<a href="{%url 'balance'%}">Check Balance </a>-->
+<!--<a href="{%url 'history'%}">View Account Activity </a>-->
+<!--<a href="{%url 'withdraw'%}">Withdraw amount</a>-->
+<!--<a href="{%url 'deposit'%}">Deposit amount</a>-->
+</div>
+</body>
+</html>

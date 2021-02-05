@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from accounts.models import CreateAccount,Transferdetails
-from accounts.forms import AccountCreateForm,LoginForm,BalanceCheckForm,TransferAmountForm,withdrawForm
+from accounts.forms import AccountCreateForm,LoginForm,BalanceCheckForm,TransferAmountForm,withdrawForm,DepositForm
 
 
 # Create your views here.
@@ -85,7 +85,7 @@ def loginView(request):
                 object=CreateAccount.objects.get(phonenumber=phone)
                 if((object.phonenumber==phone) & (object.mpin==mpin)):
                     print("user exist")
-                return redirect("home")
+                return redirect("homein")
 
             except Exception as e:
                 print("invalid user")
@@ -93,6 +93,9 @@ def loginView(request):
                 return render(request,"accounts/login.html",context)
 
     return render(request, "accounts/login.html",context)
+
+def Homein(request):
+    return render(request, "accounts/homein.html")
 
 
 def balanceEnq(request):
@@ -164,3 +167,32 @@ def withdrawAmount(request):
                 return render(request, "accounts/withdrawamount.html", context)
 
         return render(request, "accounts/withdrawamount.html", context)
+
+
+def DepositView(request):
+        form=DepositForm()
+        context={}
+        context["form"]=form
+        if request.method == "POST":
+            form = DepositForm(request.POST)
+            if form.is_valid():
+                mpin = form.cleaned_data.get("mpin")
+                amount = form.cleaned_data.get("amount")
+                try:
+                    object = CreateAccount.objects.get(mpin=mpin)
+                    bal = object.balance + amount
+                    object.balance = bal
+                    object.save()
+
+                except Exception:
+                    context["form"] = form
+                    return render(request, "accounts/deposit.html",context)
+
+                form.save()
+
+                return redirect("balance")
+            else:
+                context["form"] = form
+                return render(request, "accounts/deposit.html", context)
+
+        return render(request, "accounts/deposit.html", context)

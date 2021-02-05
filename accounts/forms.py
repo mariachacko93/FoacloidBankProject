@@ -99,3 +99,30 @@ class withdrawForm(ModelForm):
         except:
             msg="please provide a valid account details"
             self.add_error("accno",msg)
+
+
+class DepositForm(ModelForm):
+    class Meta:
+        model=Transferdetails
+        fields="__all__"
+
+
+    def clean(self):
+        cleaned_data=super().clean()
+        mpin=cleaned_data.get("mpin")
+        amount = cleaned_data.get("amount")
+        print(mpin,",",",",amount)
+
+        # sufficent amount
+        try:
+            object=CreateAccount.objects.get(mpin=mpin)
+            if object:
+                if (object.balance<amount):
+                    msg="insufficent amount"
+                    self.add_error("amount",msg)
+                pass
+        #     pin validation
+        except:
+            msg="you have provided invalid mpin"
+            self.add_error("mpin",msg)
+
