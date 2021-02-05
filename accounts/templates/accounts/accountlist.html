@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>acclist</title>
+</head>
+<body>
+<a href="{%url 'createaccount'%}">create new account</a>
+<hr>
+
+{%for person in account%}
+    personname:{{person.personname}}
+    accno:{{person.accno}}
+    acctype:{{person.acctype}}
+    balance:{{person.balance}}
+    phonenumber:{{person.phonenumber}}
+    mpin:{{person.mpin}}
+<hr>
+{%endfor%}
+
+
+</body>
+</html>
