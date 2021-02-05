@@ -15,14 +15,14 @@ def transfer(request):
         if form.is_valid():
             mpin=form.cleaned_data.get("mpin")
             amount=form.cleaned_data.get("amount")
-            accno=form.cleaned_data.get("amount")
+            accno=form.cleaned_data.get("accno")
             try:
                 object=CreateAccount.objects.get(mpin=mpin)
                 bal=object.balance-amount
                 object.balance=bal
                 object.save()
                 object1 = CreateAccount.objects.get(accno=accno)
-                bal1=object1.balance=amount
+                bal1=object1.balance+amount
                 object1.balance=bal1
                 object1.save()
 
