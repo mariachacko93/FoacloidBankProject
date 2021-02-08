@@ -2,10 +2,11 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from accounts.models import CreateAccount,Transferdetails
 from accounts.forms import AccountCreateForm,LoginForm,BalanceCheckForm,TransferAmountForm,withdrawForm,DepositForm
+# from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-
+# @login_required
 def transfer(request):
     form=TransferAmountForm()
     context={}
@@ -41,7 +42,6 @@ def transfer(request):
     return render(request,"accounts/transferamount.html",context)
 
 
-
 def createAccount(request):
     form=AccountCreateForm()
     context={}
@@ -60,7 +60,7 @@ def createAccount(request):
             account=CreateAccount(personname=personname,accno=accno,acctype=acctype,balance=balance,phonenumber=phonenumber,mpin=mpin)
             account.save()
 
-            return redirect("accountlist")
+            return redirect("homein")
     return  render(request,"accounts/createaccount.html",context)
 
 def accountList(request):
@@ -93,7 +93,7 @@ def loginView(request):
                 return render(request,"accounts/login.html",context)
 
     return render(request, "accounts/login.html",context)
-
+# @login_required
 def Homein(request):
     return render(request, "accounts/homein.html")
 

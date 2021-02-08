@@ -7,12 +7,13 @@
 
     </head>
     <body>
-
+<h2>Deposit</h2>
     <form action="" method="post">
         {% csrf_token%}
         {{form.as_p}}
         <input type="submit">
     </form>
+    <a href="{%url 'homein'%}">>>Back to Homepage</a>
 
     </body>
     </html>

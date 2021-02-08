@@ -9,6 +9,7 @@ class CreateAccount(models.Model):
     phonenumber=models.IntegerField()
     mpin=models.IntegerField(unique=True)
 
+
     def __str__(self):
         return self.personname
 
